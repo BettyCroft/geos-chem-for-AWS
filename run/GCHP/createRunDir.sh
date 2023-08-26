@@ -12,7 +12,7 @@
 #
 # Initial version: E. Lundgren,10/5/2018
 
-srcrundir=$(pwd -P)
+srcrundir=$(pwd)
 cd ${srcrundir}
 cd ../..
 gcdir=$(pwd)

@@ -12,12 +12,12 @@
 #
 # Initial version: M. Sulprizio, 6/24/2020 (based off GCHPctm/createRunDir.sh)
 
-srcrundir=$(pwd -P)
+srcrundir=$(pwd)
 cd ${srcrundir}
 cd ../..
-gcdir=$(pwd -P)
+gcdir=$(pwd)
 cd ../../
-wrapperdir=$(pwd -P)
+wrapperdir=$(pwd)
 cd ${srcrundir}
 
 # Load file with utility functions to setup configuration files

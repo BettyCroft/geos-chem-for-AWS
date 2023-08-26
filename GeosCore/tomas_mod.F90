@@ -849,8 +849,14 @@ CONTAINS
              ERR_IND(2) = J
              ERR_IND(3) = L
              ERR_IND(4) = 0
+             IF ( .not. spinup(60.0)) THEN
              call check_value( Gcout(jc), ERR_IND, ERR_VAR, ERR_MSG )
-
+             ELSE
+               IF ( IT_IS_NAN( Gcout(jc) ) .or. &
+                    .not. IT_IS_FINITE( Gcout(jc) ) )THEN ! reset to small positive for spinup
+                 Gcout(jc) = 1.e-35_fp
+               ENDIF
+              ENDIF  ! test if can run thru spinup at higher res
              !if( IT_IS_FINITE(Gcout(jc))) then
              !   print *,'xxxxxxxxx Found Inf in Gcout xxxxxxxxxxxxxx'
              !   print *,'Location ',I,J,L, 'comp',jc
@@ -4032,6 +4038,7 @@ CONTAINS
     ! For SOACOND warnings
     INTEGER, SAVE       :: SOACOND_WARNING_CT  = -1
     INTEGER, PARAMETER  :: SOACOND_WARNING_MAX = 20
+    !INTEGER, PARAMETER  :: SOACOND_WARNING_MAX = 1
 
     !=================================================================
     ! SOACOND begins here
